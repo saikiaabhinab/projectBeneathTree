@@ -1,5 +1,5 @@
 const express = require('express');
-const { getSignedUrl } = require('@aws-sdk/cloudfront-signer'); 
+const { getSignedUrl } = require('@aws-sdk/cloudfront-signer');
 
 const app = express();
 const port = 3000;
@@ -15,7 +15,7 @@ app.get('/get-signed-url', (req, res) => {
   if (!signedUrl || Date.now() > signedUrl.lastTime) {
     const url = getSignedUrl({
       url: "https://d2tedsjy9sw39b.cloudfront.net/img.png",
-      dateLessThan: new Date(Date.now() + 1000 * 60),
+      dateLessThan: new Date(Date.now() + 1000 * 60 * 5),
       privateKey: process.env.CLOUDFRONT_PRIVATE_KEY,
       keyPairId: process.env.CLOUDFRONT_KEY_PAIR_ID
     })
