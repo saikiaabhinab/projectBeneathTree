@@ -1,7 +1,5 @@
 const express = require('express');
-const { getSignedUrl } = require('@aws-sdk/cloudfront-signer'); // Import the correct function
-
-
+const { getSignedUrl } = require('@aws-sdk/cloudfront-signer'); 
 
 const app = express();
 const port = 3000;
@@ -26,9 +24,7 @@ app.get('/get-signed-url', (req, res) => {
       url: url,
       lastTime: url.match(/Expires=(\d+)/)[1] * 1000
     }
-
   }
-
 
   const imgtag = `<img src="${signedUrl.url}"></img>`
 
@@ -42,6 +38,3 @@ app.get('/get-signed-url', (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });
-
-1691695742729
-1691695713000
