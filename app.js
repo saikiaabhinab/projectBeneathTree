@@ -27,11 +27,6 @@ app.get('/get-signed-url', (req, res) => {
   }
 
   const imgtag = `<img src="${signedUrl.url}"></img>`
-
-  if (new Date() > signedUrl.lastTime) {
-    return res.status(403).send('Access Denied'); // Expired, send "Access Denied" response
-  }
-
   res.send(imgtag);
 });
 
